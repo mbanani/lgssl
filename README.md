@@ -43,7 +43,7 @@ In our case, the datasets had the following sizes:
 
 
 We assume all training datasets are in `data/datasets` which is set as the default `data_root` in
-the base [dataset class](./lgssl/datasets/base_dataset.py). We expect dataset to be in the format
+the base [dataset class](./lgssl/datasets/base_dataset.py). We expect the dataset to be in the format
 below where each dataset is subdivided into several directories and each directory contains a set of
 instances where each instance has an image file and a json caption file. 
 
@@ -63,7 +63,7 @@ data/datasets/<dataset_name>
     |- directory_m
 ```
 
-For RedCaps, the directory names are encoded as `<subreddit>_<year>_<id>`, eg,
+For RedCaps, the directory names are encoded as `<subreddit>_<year>_<id>`, e.g.,
 `crochet_2017_000001`, where each directory only has 10000 classes. We use this naming convention
 for some of the experiments: experiments with redcaps-2020 and sampling scope. 
 
@@ -121,7 +121,7 @@ Evaluation
 We use two primary evaluations: linear probe using L-BFGS and few-shot evaluation. The configs for those evaluations can be found [here](./configs/evaluation.yaml). 
 
 **Linear Probe**: we train a single layer using logistic regression and sweep over regualizer weight values. 
-We provide an [implementation](./lgssl/evaluation/logistic_regression.py) of logistic regression using PyTorch's L-BFGS, however, you can easily use SciKit learn's implementation by setting the `use_sklearn` flag in the [evaluation configs](./configs/evaluation.yaml).
+We provide an [implementation](./lgssl/evaluation/logistic_regression.py) of logistic regression using PyTorch's L-BFGS, however, you can easily use scikit-learn's implementation by setting the `use_sklearn` flag in the [evaluation configs](./configs/evaluation.yaml).
 For datasets without a standard validation split, we randomly split the training set while maintaining the class distribution. 
 
 **Few-Shot Evaluation**: we also evaluate our frozen features on 5-shot, 5-way classification. The evaluation can be found [here](./lgssl/evaluation/fewshot.py).

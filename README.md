@@ -146,7 +146,7 @@ download them to `data/checkpoints`. More details coming soon.
 
 If you find this code useful, please consider citing:  
 
-```text
+```bibtex
 @inProceedings{elbanani2022languageguided,
   title={{Learning Visual Representations via Language-Guided Sampling}},
   author={El Banani, Mohamed and Desai, Karan and Johnson, Justin},

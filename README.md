@@ -3,7 +3,7 @@ Learning Visual Representations via Language-Guided Sampling
 
 <img src="https://user-images.githubusercontent.com/11287599/221066639-9553cb09-a1c7-4bed-99dc-21cd14250215.png" width="50%">
 
-**Learning Visual Representations via Language-Guided Sampling**  
+**[Learning Visual Representations via Language-Guided Sampling][1]**  
 [Mohamed El Banani][2], [Karan Desai][3], and [Justin Johnson][4]
 
 If you have any questions, please feel free to email me at [mbanani@umich.edu](mailto:mbanani@umich.edu).
@@ -161,6 +161,7 @@ We also thank David Fouhey, Ziyang Chen, Chenhao Zheng, and Fahad Kamran, and Da
 This project was funded under the Ford-UM Alliance partnership. 
 We thank Alireza Rahimpour, Davesh Upadhyay, and Ali Hassani from Ford Research for their support and discussion.
 
+[1]: https://arxiv.org/abs/2302.12248
 [2]: https://mbanani.github.io
 [3]: http://kdexd.xyz
 [4]: https://web.eecs.umich.edu/~justincj/

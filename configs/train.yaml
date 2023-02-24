@@ -1,0 +1,38 @@
+system:
+  random_seed: 8
+  num_gpus: 1
+paths:
+  tensorboard_dir: ./tensor_logs
+  experiments_dir: ./checkpoints
+optim:
+  max_steps: 250000
+  checkpoint_step: 25000
+  precision: 16
+  sync_batchnorm: True
+  optimizer:
+    _target_: torch.optim.AdamW
+    params:
+      _target_: lgssl.optim.set_weight_decay_per_param
+      weight_decay: 0.01
+      gain_bias_decay: 0.0
+    lr:
+      _target_: lgssl.optim.get_linear_scaled_lr
+      base_lr: 0.001
+      batch_size: ${dataset.batch_size}
+      base_batch_size: 512
+  scheduler:
+    _target_: pl_bolts.optimizers.lr_scheduler.LinearWarmupCosineAnnealingLR
+    max_epochs: ${optim.max_steps}
+    warmup_epochs: 5000
+    warmup_start_lr: 1e-5
+    eta_min: 1e-6
+dataset:
+  _target_: lgssl.datasets.simclr_dataset.SimCLRDataset
+  name: redcaps
+  batch_size: 512
+  augmentation: global_crop
+  sampling: nn
+  nn_encoder: all-mpnet-base-v2
+defaults:
+  - model: simclr
+  - _self_

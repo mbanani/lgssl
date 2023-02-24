@@ -1,0 +1,25 @@
+system:
+  random_seed: 8
+model:
+  name: lgssl_checkpoints
+  checkpoint: lgsimclr
+evaluations:
+  linear_probe: True
+  fewshot: True
+dataset:
+  name: all
+  image_mean: imagenet
+logistic_regression:
+  max_iter: 1000 
+  combine_trainval: True
+  use_sklearn: False
+fewshot:
+  n_iter: 5000
+  n_way: 5
+  n_shot: 5
+  n_query: 6
+  center_feats: True
+  normalize_feats: True
+  average_feats: True
+defaults:
+  - _self_

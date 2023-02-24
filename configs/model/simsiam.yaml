@@ -1,0 +1,23 @@
+trainer: SimSiam
+
+visual:
+  _target_: timm.create_model
+  model_name: resnet50
+  zero_init_last: true
+  num_classes: 0         # Remove final classifier.
+
+visual_projection:
+  _target_: lgssl.modules.projection_mlp.ProjectionMLP
+  input_dim: 2048
+  final_bn: True
+  fc_dims:
+    - 2048
+    - 2048
+    - 2048
+
+visual_prediction:
+  _target_: lgssl.modules.projection_mlp.ProjectionMLP
+  input_dim: 2048
+  fc_dims:
+    - 512
+    - 2048 

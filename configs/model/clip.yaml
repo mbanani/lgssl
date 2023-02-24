@@ -1,0 +1,28 @@
+trainer: CLIP
+
+visual:
+  _target_: timm.create_model
+  model_name: resnet50
+  zero_init_last: false  # Default argument in torchvision (backward compat).
+  num_classes: 0         # Remove final classifier.
+
+language_model: CLIP
+language:
+  _target_: lgssl.modules.language_model.CLIPLanguageEncoder
+  context_length: 77
+  vocab_size: 49408
+  transformer_heads: 8
+  transformer_layers: 12
+  transformer_width: 512
+
+visual_projection:
+  _target_: torch.nn.Linear 
+  in_features: 2048
+  out_features: 512
+  bias: False
+
+language_projection:
+  _target_: torch.nn.Linear 
+  in_features: 512
+  out_features: 512
+  bias: False

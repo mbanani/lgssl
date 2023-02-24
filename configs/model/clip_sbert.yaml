@@ -1,0 +1,24 @@
+trainer: CLIP
+
+visual:
+  _target_: timm.create_model
+  model_name: resnet50
+  zero_init_last: false  # Default argument in torchvision (backward compat).
+  num_classes: 0         # Remove final classifier.
+
+language_model: frozen_sbert
+language:
+  _target_: sentence_transformers.SentenceTransformer
+  model_name_or_path: all-mpnet-base-v2
+
+visual_projection:
+  _target_: torch.nn.Linear 
+  in_features: 2048
+  out_features: 512
+  bias: False
+
+language_projection:
+  _target_: torch.nn.Linear
+  in_features: 768
+  out_features: 512
+  bias: False

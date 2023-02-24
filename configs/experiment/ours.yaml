@@ -1,0 +1,13 @@
+# @package _global_
+system:
+  num_gpus: 2
+dataset:
+  _target_: lgssl.datasets.simclr_dataset.SimCLRDataset
+  name: redcaps
+  batch_size: 512
+  augmentation: global_crop
+  sampling: nn
+  nn_encoder: all-mpnet-base-v2
+experiment:
+  group: "LGSSL"
+  name: ${experiment.group}_${model.trainer}_${dataset.name}_${dataset.sampling}_${dataset.nn_encoder}_${dataset.augmentation}

@@ -1,0 +1,12 @@
+# @package _global_
+system:
+  num_gpus: 2
+dataset:
+  _target_: lgssl.datasets.simclr_dataset.SimCLRDataset
+  name: redcaps
+  batch_size: 512 
+  augmentation: simclr
+  sampling: self
+experiment:
+  group: "VisBaseline"
+  name: ${experiment.group}_${model.trainer}_${dataset.name}

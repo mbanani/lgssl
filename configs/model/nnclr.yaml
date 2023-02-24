@@ -1,0 +1,24 @@
+trainer: NNCLR
+temperature: 0.1
+queue_len: 16384
+
+visual:
+  _target_: timm.create_model
+  model_name: resnet50
+  zero_init_last: false  # Default argument in torchvision (backward compat).
+  num_classes: 0         # Remove final classifier.
+
+visual_projection:
+  _target_: lgssl.modules.projection_mlp.ProjectionMLP
+  input_dim: 2048
+  fc_dims:
+    - 2048
+    - 2048
+    - 256
+
+visual_prediction:
+  _target_: lgssl.modules.projection_mlp.ProjectionMLP
+  input_dim: 256
+  fc_dims:
+    - 4096
+    - 256 

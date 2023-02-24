@@ -1,0 +1,11 @@
+# @package _global_
+system:
+  num_gpus: 2
+dataset:
+  _target_: lgssl.datasets.clip_dataset.CLIPDataset
+  name: redcaps
+  batch_size: 512 
+  augmentation: global_crop
+experiment:
+  group: "CLIPBaseline"
+  name: ${experiment.group}_${model.trainer}_${model.language_model}_${dataset.name}

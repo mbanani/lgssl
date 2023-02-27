@@ -151,6 +151,7 @@ If you find this code useful, please consider citing:
 @inProceedings{elbanani2022languageguided,
   title={{Learning Visual Representations via Language-Guided Sampling}},
   author={El Banani, Mohamed and Desai, Karan and Johnson, Justin},
+  booktitle={CVPR},
   year={2022},
 }
 ```

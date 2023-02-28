@@ -12,7 +12,7 @@ from lgssl.evaluation.utils import extract_features, get_model
 
 @hydra.main(config_name="evaluation", config_path="./configs")
 def main(cfg: DictConfig):
-    model = get_model(cfg.model)
+    model = get_model(cfg.model.name, cfg.model.checkpoint)
 
     assert any([cfg.evaluations[x] for x in cfg.evaluations]), "No evaluation tasks."
     lin_out = {}

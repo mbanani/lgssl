@@ -1,4 +1,5 @@
 datasets
 data_dicts
 checkpoints
+full_checkpoints
 backbones

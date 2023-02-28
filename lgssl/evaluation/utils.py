@@ -16,9 +16,7 @@ def clean_state_dict(state_dict, remove_prefix):
     return state_dict
 
 
-def get_model(model_cfg):  # noqa: C901
-    model_name = model_cfg.name
-    ckpt_name = model_cfg.checkpoint
+def get_model(model_name, ckpt_name):
     if ckpt_name in ["random", "IMAGENET1K_V1", "IMAGENET1K_V2"]:
         ckpt_name = None if ckpt_name == "random" else ckpt_name
         model = torchvision.models.__dict__[model_name](weights=ckpt_name)

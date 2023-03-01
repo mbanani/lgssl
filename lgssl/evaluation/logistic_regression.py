@@ -20,9 +20,8 @@ class LogisticRegression:
         return loss.mean() + (1.0 / self.C) * wreg
 
     def predict_proba(self, feats):
-        device = feats.device
         assert self.logreg is not None, "Need to fit first before predicting probs"
-        return self.logreg(feats.to(device)).softmax(dim=-1).to(device=device)
+        return self.logreg(feats.to(device)).softmax(dim=-1).to(device=self.device)
 
     def fit(self, feats, labels):
         feat_dim = feats.shape[1]

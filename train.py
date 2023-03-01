@@ -18,8 +18,10 @@ from lgssl.trainers.simsiam_trainer import SimSiamTrainer
 from lgssl.trainers.slip_trainer import SLIPTrainer
 from lgssl.trainers.swav_trainer import SwAVTrainer
 
-torch.backends.cuda.matmul.allow_tf32 = True
-torch.backends.cudnn.allow_tf32 = True
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if device.type == "cuda":
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
 
 
 @hydra.main(config_name="train", config_path="./configs")

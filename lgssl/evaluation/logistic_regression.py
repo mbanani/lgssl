@@ -12,6 +12,7 @@ class LogisticRegression:
         self.random_state = random_state
         self.logreg = None
         self.verbose = verbose
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     def compute_loss(self, feats, labels):
         loss = self.loss_func(feats, labels)
@@ -21,7 +22,7 @@ class LogisticRegression:
     def predict_proba(self, feats):
         device = feats.device
         assert self.logreg is not None, "Need to fit first before predicting probs"
-        return self.logreg(feats.cuda()).softmax(dim=-1).to(device=device)
+        return self.logreg(feats.to(device)).softmax(dim=-1).to(device=device)
 
     def fit(self, feats, labels):
         feat_dim = feats.shape[1]
@@ -36,9 +37,9 @@ class LogisticRegression:
         self.logreg.bias.data.fill_(0.0)
 
         # move everything to CUDA .. otherwise why are we even doing this?!
-        self.logreg = self.logreg.cuda()
-        feats = feats.cuda()
-        labels = labels.cuda()
+        self.logreg = self.logreg.to(self.device)
+        feats = feats.to(self.device)
+        labels = labels.to(self.device)
 
         # define the optimizer
         opt = torch.optim.LBFGS(

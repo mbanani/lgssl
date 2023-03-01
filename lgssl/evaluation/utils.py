@@ -6,6 +6,8 @@ import torch.utils.data
 import torchvision
 from tqdm import tqdm
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 def clean_state_dict(state_dict, remove_prefix):
     for k in list(state_dict.keys()):
@@ -47,7 +49,7 @@ def get_model(model_name, ckpt_name):
         model.fc = torch.nn.Identity()
     elif model_name == "clip":
         assert model_name == "resnet50"
-        model, _ = clip.load("RN50", device="cpu")
+        model, _ = clip.load("RN50", device=device)
         model = model.visual
     elif model_name == "lgssl_checkpoints":
         ckpt_path = Path(__file__) / f"../../../data/checkpoints/{ckpt_name}.ckpt"
@@ -60,7 +62,7 @@ def get_model(model_name, ckpt_name):
     else:
         raise ValueError()
 
-    model = model.eval().cuda()
+    model = model.eval().to(device)
     return model
 
 
@@ -77,7 +79,7 @@ def extract_features(
 
     for images, labels in tqdm(loader, desc="Extracting feats"):
         with torch.inference_mode():
-            images = images.cuda()
+            images = images.to(device)
             features = model(images)
             if type(features) is list:
                 assert len(features) == 1

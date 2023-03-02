@@ -161,7 +161,7 @@ Acknowledgments
 We thank Richard Higgins, Ashkan Kazemi, and Santiago Castro for many helpful discussions.
 We also thank David Fouhey, Ziyang Chen, Chenhao Zheng, and Fahad Kamran, and Dandan Shan for their feedback on early drafts. 
 This project was funded under the Ford-UM Alliance partnership. 
-We thank Alireza Rahimpour, Davesh Upadhyay, and Ali Hassani from Ford Research for their support and discussion.
+We thank Alireza Rahimpour, Devesh Upadhyay, and Ali Hassani from Ford Research for their support and discussion.
 
 [1]: https://arxiv.org/abs/2302.12248
 [2]: https://mbanani.github.io

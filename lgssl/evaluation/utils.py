@@ -49,7 +49,7 @@ def get_model(model_name, ckpt_name):
         model.fc = torch.nn.Identity()
     elif model_name == "clip":
         assert model_name == "resnet50"
-        model, _ = clip.load("RN50", device=device)
+        model, _ = clip.load("RN50", device="cpu")
         model = model.visual
     elif model_name == "lgssl_checkpoints":
         ckpt_path = Path(__file__) / f"../../../data/checkpoints/{ckpt_name}.ckpt"

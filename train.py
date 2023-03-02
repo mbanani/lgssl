@@ -18,7 +18,6 @@ from lgssl.trainers.simsiam_trainer import SimSiamTrainer
 from lgssl.trainers.slip_trainer import SLIPTrainer
 from lgssl.trainers.swav_trainer import SwAVTrainer
 
-
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
 

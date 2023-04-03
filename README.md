@@ -69,11 +69,31 @@ for some of the experiments: experiments with redcaps-2020 and sampling scope.
 
 ### Generating dataset dictionaries
 
-Coming soon.
+We create dataset specific dictionaries that contain the information for each dataset (eg, image
+paths, captions) which allow for easy sampling in subsequent steps. To generate a dataset
+dictionary, run the following code where `<dataset_name>` is the name of the dataset repo in 
+`data/datasets`. 
+
+```bash
+cd preprocess
+python make_imagecaption_dict.py <dataset_name> 
+```
 
 ### Sampling nearest neighbor pairs
 
-Coming soon.
+Once we have the dataset dictionaries, we can easily sample nearest neighbor pairs. We provide the
+code for sampling using language or visual embeddings. We also provide the sampling based on dataset
+subsets for the experiments reported in supplementary. Check the commands below for language
+sampling based on SBERT, visual sampling based on an ImageNet pretrained model, and language
+sampling within each subreddit. 
+
+```bash
+python sample_language_nn.py <dataset_name> all-mpnet-base-v2                       # Language - MPNet (SBERT)
+python sample_language_nn_subsets.py <dataset_name> all-mpnet-base-v2 subreddit     # Language Subset - MPNet (SBERT) on subreddits
+
+python sample_visual_nn.py <dataset_name> vit_b_32 IMAGENET1K_V1                    # Visual - ImageNet-supervised ViT-B/32
+```
+
 
   </p>
 </details>
@@ -141,7 +161,15 @@ Pre-trained Checkpoints
 
 You can find all our pretrained checkpoints
 [here](https://www.dropbox.com/sh/me6nyiewlux1yh8/AAAPrD2G0_q_ZwExsVOS_jHQa?dl=0). You should
-download them to `data/checkpoints`. More details coming soon.
+download them to `data/checkpoints`. Alternatively, you could just use hubconf to get the relevant
+checkpoint as shown in the code snippet below:
+
+```python
+import torch
+model = torch.hub.load("mbanani/lgssl", "lgsimclr")
+```
+
+For a list of released models, check [hubconf.py](./hubconf.py)
 
 ## Citation 
 

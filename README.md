@@ -176,11 +176,11 @@ For a list of released models, check [hubconf.py](./hubconf.py)
 If you find this code useful, please consider citing:  
 
 ```bibtex
-@inProceedings{elbanani2022languageguided,
+@inproceedings{elbanani2022languageguided,
   title={{Learning Visual Representations via Language-Guided Sampling}},
   author={El Banani, Mohamed and Desai, Karan and Johnson, Justin},
   booktitle={CVPR},
-  year={2022},
+  year={2023},
 }
 ```
 
